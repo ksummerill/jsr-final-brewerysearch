@@ -1,0 +1,14 @@
+/*
+Construct an array of company names, like Uber, Lyft, Google, Apple
+Construct a silly array of animals
+Make a for loop that makes a sentence similar to "My company is an Uber for dogs!"
+Spit out at least 5 sentences to the console.log()
+
+*/
+
+var companyNames = ["Uber", "Lyft", "Google", "Apple"];
+var sillyAnimals = ["dogs", "cats", "hampsters", "lions"];
+var sentence = ("My company is an ") + (companyNames[0]) + ("for dogs!");
+
+console.log(sentence);
+
