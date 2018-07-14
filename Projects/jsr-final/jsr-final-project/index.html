@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Brewery Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="styles/normalize.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="styles/html5bp.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
+
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+
+  <header>
+    <form action="#" id="searchForm">
+      <div class="form">
+        <input type="text" id="search" placeholder="Search by brewery, state or city...">
+        <input type="submit" value="Go!">
+      </div>
+
+      <div class="marker"></div>
+    </form>
+
+  </header>
+
+      <section id="main" class="container"></section>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="BreweryMap.js"></script>
+
+  </body>
+</html>
+
+
+<!--
+<header>
+  <div class="form">
+    <input id="search" type="text" value="" placeholder="Search by brewery, state or city...">
+  </div>
+</header>
+-->
