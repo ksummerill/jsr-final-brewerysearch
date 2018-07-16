@@ -28,13 +28,15 @@ $(document).ready(function(){
       var breweryState = (data[0].state);
       var breweryCity = (data[0].city);
       var breweryStreet = (data[0].street);
+      var breweryScore = (data[0].overall);
       var place = (breweryName + breweryStreet + breweryCity + breweryState);
       console.log(place); // logs info for Sierra Nevada in CA
 
+
     // Mapbox geocoder is giving me cities and state
-    $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + searchValue + '.json?access_token=pk.eyJ1Ijoia3N1bW1lcmlsbCIsImEiOiJjajdreWRlNTgyaTl0MnFvMjRscnI1eDBvIn0.YzcP4_MZvzgm6HiMGcUsHQ&country=us', function(data){
+    $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + searchValue + '.json?access_token=pk.eyJ1Ijoia3N1bW1lcmlsbCIsImEiOiJjajdreWRlNTgyaTl0MnFvMjRscnI1eDBvIn0.YzcP4_MZvzgm6HiMGcUsHQ&country=us&types=poi&autocomplete=true', function(data){
         console.log($.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + searchValue + '.json?access_token=pk.eyJ1Ijoia3N1bW1lcmlsbCIsImEiOiJjajdreWRlNTgyaTl0MnFvMjRscnI1eDBvIn0.YzcP4_MZvzgm6HiMGcUsHQ')); //logs response from Mapbox
-        console.log(data.features[0].center); // logs coordinates for searchValue
+        console.log(data.features.length); // logs coordinates for searchValue
 
         // add markers to map
         data.features.forEach(function(marker) {
@@ -42,58 +44,28 @@ $(document).ready(function(){
         // create a HTML element for each feature
         var el = document.createElement('div');
         el.className = 'marker';
+        
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+        .setHTML('<h3>' + breweryName + '</h3><p>' + 'Score: ' + Math.round(breweryScore) + '</p>'))
         .addTo(map);
 
-        // if search is a city, make a for loop to go through data to grab all breweries in that city
-        if (searchValue === "seattle") {
-        for (var i = 0; i < data; i++) {
-          return i;
-        }
-        } else {
-          console.log("not seattle");
-        }
-
+        // click on marker and fly to that location
+        $(".marker").click(function() {
+          var markerCoordinate = ([data.features.center]);
+          //var markerCoordinate = (marker.geometry.coordinates);
+          console.log(markerCoordinate);
+          map.flyTo({
+            center: markerCoordinate,
+            zoom: 11
+          });
+        });
       });
     });
 
-
-
-
   })
-
 });
-
 })
-
-
-
-
-
-/* 2 different attempts to flyto marker location
-//   $(document).ready(function(){
-//     $("#searchForm").submit(function(e){
-//       e.preventDefault();
-//       map.flyTo({
-//           center: [
-//               -74.50 + (Math.random() - 0.5) * 10,
-//               40 + (Math.random() - 0.5) * 10]
-//         });
-//   })
-// })
-//     document.getElementById("#fly").addEventListener('click', function () {
-//       // Fly to a random location by offsetting the point -74.50, 40
-//       // by up to 5 degrees.
-//       map.flyTo({
-//           center: [
-//               -74.50 + (Math.random() - 0.5) * 10,
-//               40 + (Math.random() - 0.5) * 10]
-//
-//   });
-// });
-*/
