@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <link rel="stylesheet" href="styles/normalize.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="styles/html5bp.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
@@ -21,13 +22,14 @@
 </head>
 <body>
 
-<div id='map'></div>
+<div id='map' id="closePopUp"></div>
+
 <div id='fly'></div>
 
   <header>
     <form action="#" id="searchForm">
       <div class="form">
-        <input type="text" id="search" placeholder="Search by brewery, state or city...">
+        <input type="text" id="search" placeholder="Search for a brewery...">
         <input type="submit" value="Go!">
       </div>
     </form>
@@ -41,8 +43,10 @@
 
 
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="BreweryMap.js"></script>
+
 
   </body>
 </html>
